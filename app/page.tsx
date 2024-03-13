@@ -1,5 +1,4 @@
 "use client";
-import ImageNext from "next/image";
 import { ChangeEvent, useState } from "react";
 
 export default function Home() {
@@ -167,13 +166,13 @@ export default function Home() {
 
       const file = await new Promise<File>((resolve) => {
         canvas.toBlob((blob) => {
-          const file = new File([blob as Blob], "cutted.jpg", { type: "image/jpg" });
+          const file = new File([blob as Blob], `page-${(i + 1).toString().padStart(3, "0")}.jpg`, { type: "image/jpg" });
           resolve(file);
         }, "image/jpg");
       });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(file);
-      a.download = "cutted.jpg";
+      a.download = `page-${(i + 1).toString().padStart(3, "0")}.jpg`;
       a.click();
 
     }
