@@ -20,10 +20,6 @@ export default function Home() {
         alert("Only jpeg and png files are allowed");
         continue;
       }
-      if (files[i].size > 1000000) {
-        alert("File size should be less than 1MB");
-        continue;
-      }
       const img = new Image();
       img.src = URL.createObjectURL(files[i]);
       await new Promise((resolve) => { // Remove the unused 'reject' parameter
@@ -87,7 +83,7 @@ export default function Home() {
           mergedCanvas.toBlob((blob) => {
             const file = new File([blob as Blob], "merged.jpg", { type: "image/jpeg" });
             resolve(file);
-          }, "image/jpeg");
+          }, "image/jpeg", 1);
         });
         flList.push(mergedFile);
       }
@@ -168,7 +164,7 @@ export default function Home() {
         canvas.toBlob((blob) => {
           const file = new File([blob as Blob], `page-${(i + 1).toString().padStart(3, "0")}.jpg`, { type: "image/jpg" });
           resolve(file);
-        }, "image/jpg");
+        }, "image/jpeg", 1);
       });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(file);
