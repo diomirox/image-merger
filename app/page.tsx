@@ -16,8 +16,8 @@ export default function Home() {
     let width = 0;
     let height = 0;
     for (let i = 0; i < files.length; i++) {
-      if (files[i].type !== "image/jpeg" && files[i].type !== "image/png") {
-        alert("Only jpeg and png files are allowed");
+      if (files[i].type !== "image/jpeg" && files[i].type !== "image/png" && files[i].type !== "image/webp") {
+        alert("Only jpeg, webp and png files are allowed");
         continue;
       }
       const img = new Image();
